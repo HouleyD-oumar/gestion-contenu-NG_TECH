@@ -77,3 +77,4 @@ Notes d'implémentation :
 - Prévoir des contraintes d'autorisation côté client et serveur (double protection).
 - Préparer des hooks réutilisables pour le fetch/pagination des listes (contents, users).
 - Tester l'accessibilité (ARIA) des modals et du menu de navigation.
+siradio diallo
