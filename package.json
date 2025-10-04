@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+  "dev": "concurrently \"npx tailwindcss -i ./src/app/globals.css -o ./src/app/.tailwind-output.css --watch\" \"next dev --turbopack\"",
     "build": "next build --turbopack",
     "start": "next start",
+  "tailwind:watch": "npx tailwindcss -i ./src/app/globals.css -o ./src/app/.tailwind-output.css --watch",
     "lint": "eslint"
   },
   "dependencies": {
@@ -28,6 +29,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-redux": "^7.1.34",
+    "autoprefixer": "^10",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^4",
