@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -45,24 +47,33 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  /* Light theme tokens (final validated) */
+  --background: #F6F7FB; /* Page background - léger */
+  --card: #FFFFFF; /* surfaces / modales */
+  --foreground: #0B1220; /* Texte principal (sombre, pas pur noir) */
+  --card-foreground: #0B1220;
+  --popover: rgba(255,255,255,0.02);
+  --popover-foreground: rgba(11,18,32,0.95);
+  /* Actions (CTA & semantic) */
+  --primary: #185ADB; /* CTA primaire */
+  --primary-foreground: #FFFFFF;
+  --secondary: #6D5FA8;
+  --secondary-foreground: #FFFFFF;
+  --success: #16A34A;
+  --warning: #FFA500;
+  --danger: #DC3545;
+  --info: #0EA5E9;
+  /* semantic black/white */
+  --black: #000000;
+  --white: #FFFFFF;
+  --muted: #6B7280;
+  --muted-foreground: #6B7280;
+  --accent: #6D5FA8;
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC3545;
+  --border: #E6E9EF;
+  --input: #FFFFFF;
+  --ring: rgba(24,90,219,0.2);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -79,16 +90,33 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
+  /* Dark theme tokens (final validated) */
+  --background: #07122a; /* Bleu nuit profond */
+  --card: #0B1220; /* surface sombre */
+  --foreground: #E6F0FA; /* texte clair */
+  --card-foreground: #E6F0FA;
+  --popover: rgba(255,255,255,0.02);
+  --popover-foreground: rgba(230,240,250,0.95);
+  --primary: #2E7BE3; /* CTA ajusté pour dark */
+  --primary-foreground: #FFFFFF;
+  --success: #2EA457;
+  --warning: #FFB84D;
+  --danger: #E35A5A;
+  --info: #60C8F8;
+  --black: #000000;
+  --white: #FFFFFF;
+
+  /* Modal & Toast tokens */
+  --modal-background: var(--card);
+  --modal-header-background: rgba(255,255,255,0.02);
+  --modal-padding: 1.25rem;
+  --toast-duration: 3000ms;
+  --toast-position: top-right; /* informational only: handled by JS */
+  --muted: #9AA6B2;
+  --muted-foreground: #9AA6B2;
+  --border: #182333;
+  --input: #071827;
+  --ring: rgba(46,123,227,0.16);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);

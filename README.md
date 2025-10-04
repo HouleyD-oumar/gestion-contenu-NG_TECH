@@ -1,3 +1,41 @@
+# Gestion-Contenu — Notes d'intégration Redux
+
+Ce dépôt contient une intégration exemple de Redux Toolkit pour une application Next.js (App Router, TypeScript).
+
+Résumé des fichiers ajoutés
+- `src/store/store.ts` — configuration du store (slices : auth, content, users, logs, ui, status)
+- `src/store/hooks.ts` — hooks typés `useAppDispatch` / `useAppSelector`
+- `src/store/ReduxProvider.tsx` — wrapper client (`"use client"`) qui fournit le `Provider` React-Redux
+- `src/store/slices/*` — slices RTK (avec thunks)
+- `src/services/api.ts` — API mock utilisée pour les thunks
+- `src/components/ContentList.tsx` — exemple d'utilisation du slice `content`
+- `src/components/TestPanel.tsx` et `src/app/test/page.tsx` — page de test interactive `/test`
+- `middleware.ts` — middleware Next.js (exemple) pour protéger les routes admin
+
+Installation rapide
+1. Installer les dépendances requises :
+
+```powershell
+npm install react-redux @reduxjs/toolkit
+npm install -D @types/react-redux
+```
+
+2. Si TypeScript signale des imports CSS, ajouter `src/global.d.ts` (fourni) ou ajuster `tsconfig`.
+
+Lancer le serveur de développement :
+
+```powershell
+npm run dev
+```
+
+Tester
+- Ouvrir `http://localhost:3000/test` pour accéder à la page de test interactive qui permet de dispatcher des thunks, simuler un login et inspecter l'état du store.
+
+Notes de sécurité
+- Le middleware et le mock API sont des exemples : remplacez-les par une vérification réelle (JWT, sessions sécurisées) en production.
+
+Besoin d'un PR ?
+Je peux ouvrir une branche et préparer un PR si vous voulez centraliser ces changements.
 # Gestion-Contenu
 
 Gestion-Contenu est une application front-end de gestion de contenu développée avec Next.js (App Router). Elle fournit un tableau de bord permettant de gérer les contenus et les utilisateurs. Le code source se trouve dans le dossier `src/` et le projet utilise TailwindCSS, TypeScript et ESLint.
