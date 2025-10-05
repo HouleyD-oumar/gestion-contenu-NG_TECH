@@ -3,22 +3,25 @@
 import React from 'react';
 import { Bell, User, LogOut, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
   onMenuClick: () => void;
 }
 
 export function Header({ onMenuClick }: HeaderProps) {
-  // Mock user data - replace with actual auth context
-  const user = {
-    firstName: 'John',
-    lastName: 'Doe',
-    role: 'ADMIN',
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
   };
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
-      <div className="flex items-center justify-between px-4 py-3">
+      <div className="flex items-center justify-between px-4 h-16">
         {/* Left: Menu button + Logo */}
         <div className="flex items-center gap-4">
           <button
@@ -46,20 +49,26 @@ export function Header({ onMenuClick }: HeaderProps) {
           </button>
 
           {/* User menu */}
-          <div className="flex items-center gap-3 pl-3 border-l border-gray-200">
-            <div className="hidden sm:block text-right">
-              <p className="text-sm font-medium text-gray-900">
-                {user.firstName} {user.lastName}
-              </p>
-              <p className="text-xs text-gray-500">{user.role}</p>
+          {user && (
+            <div className="flex items-center gap-3 pl-3 border-l border-gray-200">
+              <div className="hidden sm:block text-right">
+                <p className="text-sm font-medium text-gray-900">
+                  {user.firstName} {user.lastName}
+                </p>
+                <p className="text-xs text-gray-500">{user.role}</p>
+              </div>
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-blue-600" />
+              </div>
+              <button 
+                onClick={handleLogout}
+                className="p-2 rounded-lg hover:bg-red-50 transition-colors group"
+                title="Déconnexion"
+              >
+                <LogOut className="w-5 h-5 text-gray-600 group-hover:text-red-600" />
+              </button>
             </div>
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-              <User className="w-5 h-5 text-blue-600" />
-            </div>
-            <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
-              <LogOut className="w-5 h-5 text-gray-600" />
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </header>

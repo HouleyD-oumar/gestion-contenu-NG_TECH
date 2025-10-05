@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Users, FileText, Activity, TrendingUp } from 'lucide-react';
+import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { CardSkeleton } from '@/components/ui/SkeletonLoader';
@@ -44,7 +45,8 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <ProtectedRoute blockViewer={true}>
+      <div className="space-y-6">
       {/* Page Title */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
@@ -269,5 +271,6 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
     </div>
+    </ProtectedRoute>
   );
 }

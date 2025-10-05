@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Search, UserPlus, MoreVertical, Edit, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -18,7 +19,8 @@ import {
   useDeleteUserMutation,
 } from '@/store/api/mockApiSlice';
 import { formatDate, formatRole, getInitials } from '@/utils/formatters';
-import type { UserResponse, UserRole } from '@/types';
+import type { UserResponse } from '@/types';
+import { UserRole } from '@/types';
 
 export default function UsersPage() {
   const [search, setSearch] = useState('');
@@ -96,7 +98,8 @@ export default function UsersPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <ProtectedRoute requiredRole={UserRole.ADMIN}>
+      <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -269,5 +272,6 @@ export default function UsersPage() {
         </>
       )}
     </div>
+    </ProtectedRoute>
   );
 }
