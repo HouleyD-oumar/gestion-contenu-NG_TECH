@@ -120,3 +120,56 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Animations personnalisées */
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
+
+.slide-in-from-left {
+  animation-name: slide-in-from-left;
+}
+
+.duration-200 {
+  animation-duration: 200ms;
+}
+
+.duration-300 {
+  animation-duration: 300ms;
+}
+
+/* Masquer l'indicateur de build Next.js */
+#__next-build-watcher {
+  display: none !important;
+}
+
+/* Masquer tous les indicateurs de développement Next.js */
+[data-nextjs-toast-errors-parent],
+[data-nextjs-dialog-overlay],
+.__next-dev-overlay {
+  display: none !important;
+}

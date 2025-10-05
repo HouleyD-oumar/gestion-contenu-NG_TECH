@@ -15,22 +15,22 @@ import { CreateContentModal } from '@/components/modals/CreateContentModal';
 import { ViewContentModal } from '@/components/modals/ViewContentModal';
 import { EditContentModal } from '@/components/modals/EditContentModal';
 import {
-  useGetMyContentsQuery,
+  useGetContentsQuery,
   useCreateContentMutation,
   useUpdateContentMutation,
   useDeleteContentMutation,
   useGetCategoriesQuery,
 } from '@/store/api/mockApiSlice';
-import { formatDate, truncateText } from '@/utils/formatters';
+import { formatDate, truncateText, getInitials } from '@/utils/formatters';
 import { ContentTag } from '@/types';
-import type { Content } from '@/types';
+import type { ContentWithAuthor } from '@/types';
 
-export default function MyContentsPage() {
+export default function AdminContentsPage() {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState('');
   const [tag, setTag] = useState('');
-  const [selectedContent, setSelectedContent] = useState<Content | null>(null);
+  const [selectedContent, setSelectedContent] = useState<ContentWithAuthor | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
@@ -38,7 +38,7 @@ export default function MyContentsPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
-  const { data, isLoading, error } = useGetMyContentsQuery({
+  const { data, isLoading, error } = useGetContentsQuery({
     page,
     limit: 12,
     search,
@@ -61,13 +61,13 @@ export default function MyContentsPage() {
     }
   };
 
-  const handleViewContent = (content: Content) => {
+  const handleViewContent = (content: ContentWithAuthor) => {
     setSelectedContent(content);
     setShowViewModal(true);
     setOpenMenuId(null);
   };
 
-  const handleEditContent = (content: Content) => {
+  const handleEditContent = (content: ContentWithAuthor) => {
     setSelectedContent(content);
     setShowEditModal(true);
     setOpenMenuId(null);
@@ -98,7 +98,7 @@ export default function MyContentsPage() {
     }
   };
 
-  const openDeleteModal = (content: Content) => {
+  const openDeleteModal = (content: ContentWithAuthor) => {
     setSelectedContent(content);
     setShowDeleteModal(true);
     setOpenMenuId(null);
@@ -121,9 +121,9 @@ export default function MyContentsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Mes Contenus</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Gestion des Contenus</h1>
           <p className="text-gray-600 mt-1">
-            Gérer vos articles et publications
+            Administration complète de tous les contenus
           </p>
         </div>
         <Button onClick={() => setShowCreateModal(true)}>
@@ -281,6 +281,18 @@ export default function MyContentsPage() {
                     ))}
                   </div>
 
+                  {/* Author Info */}
+                  <div className="flex items-center gap-2 mb-3 pb-3 border-b border-gray-200">
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                      <span className="text-xs text-blue-600 font-semibold">
+                        {getInitials(content.author.firstName, content.author.lastName)}
+                      </span>
+                    </div>
+                    <span className="text-xs text-gray-600">
+                      {content.author.firstName} {content.author.lastName}
+                    </span>
+                  </div>
+
                   <div className="flex items-center justify-between text-xs text-gray-500">
                     <span>{content.category}</span>
                     <span>{formatDate(content.createdAt)}</span>
@@ -328,7 +340,7 @@ export default function MyContentsPage() {
               <p className="text-gray-500 mb-4">Aucun contenu trouvé</p>
               <Button>
                 <Plus className="w-4 h-4" />
-                Créer votre premier contenu
+                Créer le premier contenu
               </Button>
             </div>
           </CardContent>
@@ -376,7 +388,7 @@ export default function MyContentsPage() {
             }}
             onConfirm={handleDeleteContent}
             title="Supprimer le contenu"
-            message={`Êtes-vous sûr de vouloir supprimer "${selectedContent.title}" ? Cette action est irréversible.`}
+            message={`Êtes-vous sûr de vouloir supprimer "${selectedContent.title}" créé par ${selectedContent.author.firstName} ${selectedContent.author.lastName} ? Cette action est irréversible.`}
             confirmText="Supprimer"
             isLoading={isDeleting}
             variant="danger"
