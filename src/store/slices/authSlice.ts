@@ -29,6 +29,10 @@ const slice = createSlice({
       state.user = null;
       state.token = null;
     },
+    setTestUser(state, action) {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(login.pending, (s) => {
@@ -47,5 +51,5 @@ const slice = createSlice({
   },
 });
 
-export const { logout } = slice.actions;
+export const { logout, setTestUser } = slice.actions;
 export default slice.reducer;

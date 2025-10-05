@@ -1,26 +1,35 @@
+export type UserRole = "admin" | "editor" | "viewer";
+
+export type ContentCategory = "technology" | "design" | "business" | "lifestyle" | "education";
+
+export type LogAction = "create" | "update" | "delete" | "login" | "logout" | "publish";
+
 export interface User {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  role: "admin" | "editor" | "viewer";
+  password: string;
+  role: UserRole;
 }
 
 export interface Content {
   id: string;
   title: string;
-  body?: string;
+  description: string;
+  image: string;
+  authorId: string;
   tags: string[];
-  category?: string;
-  authorId?: string;
-  publishedAt?: string | null;
+  category: ContentCategory;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface LogEntry {
   id: string;
-  actor: string;
-  action: string;
-  timestamp: string;
-  details?: string;
+  performedBy: string;
+  performedAt: string;
+  action: LogAction;
 }
 
 export interface Pagination {

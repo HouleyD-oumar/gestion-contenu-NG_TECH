@@ -33,6 +33,9 @@ const slice = createSlice({
 		setFilters(state, action: PayloadAction<{ tags?: string[]; category?: string }>) {
 			state.filters = { ...state.filters, ...action.payload };
 		},
+		setPagination(state, action: PayloadAction<{ page?: number; perPage?: number }>) {
+			state.pagination = { ...state.pagination, ...action.payload };
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchContents.pending, (s) => {
@@ -51,6 +54,6 @@ const slice = createSlice({
 	},
 });
 
-export const { setFilters } = slice.actions;
+export const { setFilters, setPagination } = slice.actions;
 export default slice.reducer;
 
