@@ -76,13 +76,13 @@ export const mockApiSlice = createApi({
       invalidatesTags: ['User', 'Stats'],
     }),
 
-    deleteUser: builder.mutation<void, string>({
+    deleteUser: builder.mutation<{ success: boolean }, string>({
       async queryFn(id) {
         await delay(300);
         const index = mockUsers.findIndex(u => u.id === id);
         if (index !== -1) {
           mockUsers.splice(index, 1);
-          return { data: undefined };
+          return { data: { success: true } };
         }
         return { error: { status: 404, data: 'User not found' } };
       },
@@ -163,13 +163,13 @@ export const mockApiSlice = createApi({
       invalidatesTags: ['Content', 'Stats'],
     }),
 
-    deleteContent: builder.mutation<void, string>({
+    deleteContent: builder.mutation<{ success: boolean }, string>({
       async queryFn(id) {
         await delay(300);
         const index = mockContents.findIndex(c => c.id === id);
         if (index !== -1) {
           mockContents.splice(index, 1);
-          return { data: undefined };
+          return { data: { success: true } };
         }
         return { error: { status: 404, data: 'Content not found' } };
       },
