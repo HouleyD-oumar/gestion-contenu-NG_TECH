@@ -18,6 +18,7 @@ import {
   validateConnexionField,
   ConnexionValidation,
 } from "@/utils/validation"
+import Link from "next/link"
 
 export default function Page() {
   return (
@@ -42,7 +43,6 @@ export function CardDemo() {
     return result.success
   }
 
-  // Gestion du changement de champ
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement>,
     field: keyof ConnexionValidation
@@ -52,7 +52,7 @@ export function CardDemo() {
 
     setFormData(updatedData)
 
-    // Validation en temps réel
+
     const errorMessage = validateConnexionField(field, newValue)
     if (field === "email") {
       setEmailHelperText(errorMessage || "")
@@ -61,7 +61,6 @@ export function CardDemo() {
     }
   }
 
-  // Soumission du formulaire
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
@@ -78,8 +77,8 @@ export function CardDemo() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-center h1">Connexion</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-center h1  text-xl uppercase font-bold ">Connexion</CardTitle>
+        <CardDescription className="text-center mt-3">
           Entrez vos identifiants pour accéder à votre compte.
         </CardDescription>
       </CardHeader>
@@ -103,7 +102,7 @@ export function CardDemo() {
               )}
             </div>
 
-            {/* --- Mot de passe --- */}
+         
             <div className="grid gap-2">
               <Label htmlFor="password">Mot de passe</Label>
               <Input
@@ -132,8 +131,8 @@ export function CardDemo() {
       <CardFooter className="flex flex-col items-center gap-2">
         <CardDescription>
           Vous n’avez pas de compte ?
-          <Button variant="link" className="px-2">
-            S’inscrire
+          <Button asChild variant="link" className="px-2">
+            <Link href="/signup">S’inscrire</Link>
           </Button>
         </CardDescription>
       </CardFooter>

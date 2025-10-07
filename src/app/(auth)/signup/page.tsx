@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 import { inscriptionSchema, InscriptionValidation } from "@/utils/validation"
+import Link from "next/link"
 
 export function CardDemo() {
  
@@ -38,8 +39,9 @@ export function CardDemo() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-center">Inscription</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-center text-2xl uppercase font-bold ">Inscription</CardTitle>
+        
+        <CardDescription className="text-center mt-3">
           Créez un compte pour commencer votre aventure avec nous.
         </CardDescription>
       </CardHeader>
@@ -96,8 +98,8 @@ export function CardDemo() {
       <CardFooter className="flex flex-col items-center gap-2">
         <CardDescription>
           Vous avez déjà un compte ?
-          <Button variant="link" className="px-2">
-            Se connecter
+          <Button asChild variant="link" className="px-2">
+            <Link href="/signin">Se connecter</Link>
           </Button>
         </CardDescription>
       </CardFooter>
