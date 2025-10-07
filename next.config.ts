@@ -27,8 +27,7 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-    ],
-    domains: ['images.unsplash.com', 'picsum.photos', 'via.placeholder.com', 'source.unsplash.com'],
+    ]
   },
   experimental: {
     turbo: {

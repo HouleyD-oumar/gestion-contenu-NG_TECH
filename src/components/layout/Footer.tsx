@@ -1,5 +1,5 @@
 import { Separator } from "../ui/separator";
-import { Github, Twitter, Linkedin, Code, Smartphone, Database, Users } from "lucide-react";
+import { Code, Smartphone, Database, Users } from "lucide-react";
 
 export default function Footer() {
   const teamMembers = {

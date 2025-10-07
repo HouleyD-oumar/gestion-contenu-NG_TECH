@@ -69,7 +69,8 @@ const mockContents: Content[] = [
     id: "4",
     title: "Guide complet du télétravail",
     description: "Tout ce que vous devez savoir pour réussir votre transition vers le télétravail et maintenir votre productivité.",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68e2c6b725?w=800&h=400&fit=crop",
+  // Original image returned 404; replaced with a stable Unsplash image
+  image: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?w=800&h=400&fit=crop",
     authorId: "3",
     tags: ["lifestyle", "télétravail", "productivité", "équilibre"],
     category: "lifestyle",
