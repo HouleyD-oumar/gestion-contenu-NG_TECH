@@ -75,7 +75,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email: 'sempybobo@gmail.com',
         role: UserRole.ADMIN,
       },
+      'toureidiatou@gmail.com': {
+        id: '5',
+        firstName: 'toure',
+        lastName: 'idiatou',
+        email: 'toureidiatou@gmail.com',
+        role: UserRole.EDITOR,
+      },
       
+
     };
 
     // Simuler un délai réseau
